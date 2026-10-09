@@ -1,0 +1,84 @@
+$(document).ready(function() {
+
+  $(".js-sign-toggle-form").click(function(){
+    $("#js-sign-container").toggleClass("js-sign-register-active");
+  })
+
+  $(".js-sign-show-password, .js-sign-hide-password").click(function(){
+    $(this).parent().toggleClass("js-password-active");
+    $(this).parent().children("input").attr("type", function(index, attr){
+      if ( attr == "password" ){
+        return "text"
+      } else {
+        return "password"
+      }
+    })
+  })
+
+  $(".js-form-forgot, .js-lacak-btn, .v2-lacak-btn, .js-sign-forgot-form-container, .close-popup").click(function(){
+    $(".js-sign-forgot-form-container, .js-sign-forgot-form").fadeToggle();
+    // $('#lacakPemohonanBackDrop, #lacakPemohonanAll').fadeToggle()
+  })
+
+  // action for skim floating button
+  $("#sikm-action, #lacakPemohonanBackDrop, .close-popup-sikm").click(function () {
+    $('#lacakPemohonanBackDrop, #lacakPemohonanAll').fadeToggle()
+  })
+
+  function checkScrollPos(){
+    var currentScrollLeft = $('.v2-timeline-scroller').scrollLeft();
+    var scrollerWidth = $('.v2-timeline-scroller').width();
+    var scrollerHeight = $('.v2-timeline-scroller').height();
+    var childrenWidth = $('.v2-timeline').width();
+
+    if ( ( currentScrollLeft + scrollerWidth ) >= childrenWidth ){
+      $('.v2-timeline-right-btn').fadeOut();
+    } else {
+      $('.v2-timeline-right-btn').fadeIn();
+    }
+
+    if (currentScrollLeft <= 0){
+      $('.v2-timeline-left-btn').fadeOut();
+    } else {
+      $('.v2-timeline-left-btn').fadeIn();
+    }
+
+    var scrollHeight = $('.v2-timeline-scroller').prop('scrollHeight');
+    var clientHeight = $('.v2-timeline-scroller').prop('clientHeight');
+
+    // console.log(scrollHeight, clientHeight)
+    
+    if ( scrollHeight > clientHeight ){
+      $('.v2-timeline-wrapper').css('height', scrollHeight + 40)
+      $('.v2-timeline-scroller').css('height', scrollHeight + 70)
+    }
+  }
+
+  checkScrollPos();
+
+  $(".v2-timeline").bind("DOMSubtreeModified", function(){
+    checkScrollPos();
+  });
+
+  $(window).bind("resize", function() {
+    checkScrollPos();
+  });
+
+  $('.v2-timeline-scroller').scroll(function() {
+    checkScrollPos();
+  });
+
+  $('.v2-timeline-right-btn').click(function(){
+    var currentScrollLeft = $('.v2-timeline-scroller').scrollLeft() + 200;
+    $('.v2-timeline-scroller').animate({
+      scrollLeft: currentScrollLeft
+    }, 400);
+  })
+
+  $('.v2-timeline-left-btn').click(function(){
+    var currentScrollLeft = $('.v2-timeline-scroller').scrollLeft() - 200;
+    $('.v2-timeline-scroller').animate({
+      scrollLeft: currentScrollLeft
+    }, 400);
+  })
+})

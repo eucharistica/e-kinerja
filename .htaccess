@@ -1,0 +1,31 @@
+RewriteEngine On
+Options -Indexes
+RewriteBase /
+
+# ======================
+# ALIAS UTAMA
+# ======================
+RewriteRule ^login/?$ index.php [NC,L]
+RewriteRule ^logout/?$ logout.php [NC,L]
+RewriteRule ^cek-login/?$ cek_login.php [NC,L]
+RewriteRule ^page-view/?$ media.php [NC,L]
+
+# ======================
+# CETAKAN
+# ======================
+RewriteRule ^cetak-surat-tugas-(.+)$ cetakan/cetak-surat-tugas.php?id=$1 [L,QSA]
+RewriteRule ^cetak-surat-cuti-(.+)$ cetakan/cetak-surat-cuti.php?id=$1 [L,QSA]
+RewriteRule ^cetak-surat-penolakan-cuti-(.+)$ cetakan/cetak-surat-penolakan-cuti.php?id=$1 [L,QSA]
+RewriteRule ^cetak-spj-gaji$ cetakan/cetak-spj-gaji.php [L]
+RewriteRule ^cetak-lap-absensi$ cetakan/cetak-lap-absensi.php [L]
+RewriteRule ^cetak-slip-gaji-(.+)$ cetakan/cetak-slip-gaji.php?id=$1 [L,QSA]
+RewriteRule ^cetak-slip-gaji1-(.+)$ cetakan/cetak-slip-gaji-all.php?id=$1 [L,QSA]
+
+# ======================
+# GENERIC
+# ======================
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/]+)/?$ $1.php [L,QSA]
+
+RewriteRule ^robots\.txt$ - [L]

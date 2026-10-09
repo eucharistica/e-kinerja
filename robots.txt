@@ -1,0 +1,8 @@
+User-agent: * 
+Disallow: /cetakan/ 
+Disallow: /conf/ 
+Disallow: /img/ 
+Disallow: /libs/
+Disallow: /module/
+Disallow: /simpeg/
+Disallow: /tmp/

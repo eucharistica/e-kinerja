@@ -1,0 +1,62 @@
+# E-Kinerja RSUD Matraman
+# Jangan commit konfigurasi lokal, kredensial, data pegawai, atau hasil upload.
+
+# Konfigurasi lokal yang berisi koneksi database/layanan
+/conf/*.php
+!/conf/index.php
+
+# Data runtime dan dokumen yang diunggah pengguna
+/files/*
+!/files/.gitkeep
+/img/*
+!/img/.htaccess
+
+# Log, cache, session, temporary files, dan hasil generate lokal
+*.log
+*.cache
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+/tmp/
+/cache/
+/logs/
+/sessions/
+
+# Database dump dan arsip lokal
+*.sql
+*.sql.gz
+*.dump
+*.zip
+*.tar
+*.tar.gz
+
+# Environment dan secret files
+.env
+.env.*
+!.env.example
+*.local
+*.secret
+
+# Dependency/build/tooling output
+/vendor/
+/node_modules/
+/coverage/
+/build/
+/dist/
+
+# IDE/editor dan OS metadata
+.idea/
+.vscode/
+*.code-workspace
+.project
+.settings/
+.classpath
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Preserve the ignore rules themselves
+!.gitignore
